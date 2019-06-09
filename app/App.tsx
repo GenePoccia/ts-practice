@@ -10,9 +10,33 @@ class UnconnectedApp extends Component {
     constructor(props : object) {
         super(props)
     }
+    componentDidMount = () => {
+        fetch("http://localhost:4000/planter")
+          .then(x => {
+            return x.text();
+          })
+          .then(responseBody => {
+            let body = JSON.parse(responseBody);
+            this.props.dispatch({
+              type: "load-planters",
+              planters: body.results
+            });
+          });
+    }
+
+    renderRoot = () => {
+        return <div>hello world</div>
+    }
+
+    renderPlanters = () => {
+        return <div> planters go here </div>
+    }
 
     render = () => {
-        return <div>Hello World!</div>
+        return <div>
+            <Route exact={true} path = '/' render = {this.renderRoot} />
+            <Route exact={true} path = '/planters' render = {this.renderPlanters} />
+            </div>
     }
 }
 
