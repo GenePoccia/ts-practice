@@ -21,12 +21,7 @@ const reducer = (state = initialState, action: action) => {
            default: return state
    }
    
-    // if (action.type === 'load-planters') {
-    //     return {...state,
-    //     planters: action.planters}
-    // }
 
-    // return state;
 }
 
 const store = createStore(
