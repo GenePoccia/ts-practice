@@ -1,7 +1,10 @@
 import {createStore} from 'redux'
 import { string } from 'prop-types';
 
-
+const initialState: Object = {
+    planters: [],
+    cart: []
+}
 
 
 interface action {
@@ -9,20 +12,26 @@ interface action {
     planters: string
 }
 
-const reducer = (state: object, action: action) => {
-    if (action.type === 'load-planters') {
-        return {...state,
-        planters: action.planters}
-    }
+const reducer = (state = initialState, action: action) => {
+   switch (action.type) {
+       case 'load-planters':
+           {
+               return {...state, planters: action.planters}
+           }
+           default: return state
+   }
+   
+    // if (action.type === 'load-planters') {
+    //     return {...state,
+    //     planters: action.planters}
+    // }
 
-    return state;
+    // return state;
 }
 
 const store = createStore(
     reducer,
-    {
-        planters: Array
-    },
+    initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
