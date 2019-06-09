@@ -6,8 +6,15 @@ export class ProductController {
     this.service = service;
   }
 
-  async getMany(req: any, res: any): Promise<any> {
-    console.log("inside controller");
-    res.json(await this.service.getProducts());
+  public async getMany(req: any, res: any): Promise<any> {
+    try {
+      const payload = await this.service.getProducts();
+      res.json({
+        payload,
+        size: payload ? payload.length : "empty",
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 }

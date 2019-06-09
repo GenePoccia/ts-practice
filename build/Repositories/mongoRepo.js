@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var MongoRepo = /** @class */ (function () {
     function MongoRepo(mongo) {
         this.connection = mongo.db("dbName");
@@ -45,10 +45,12 @@ var MongoRepo = /** @class */ (function () {
     MongoRepo.prototype.getMany = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                console.log("above return");
                 return [2 /*return*/, this.connection
                         .collection("planters")
                         .find({})
                         .toArray(function (err, results) {
+                        console.log("you are here");
                         console.log(err);
                         return JSON.stringify({ success: true, results: results });
                     })];

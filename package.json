@@ -2,11 +2,13 @@
   "name": "ts-practice",
   "version": "1.0.0",
   "description": "",
-  "main": "app/server.js",
+  "main": "build/index.js",
   "scripts": {
     "tsc": "tsc",
-    "dev": "nodemon --watch \"app/**/*.ts\" --exec \"ts-node\" app/server.ts",
-    "prod": "tsc && node ./build/app.js"
+    "dev": "nodemon --watch \"app/**/*.ts\" --exec \"ts-node\" app/index.ts",
+    "prod": "tsc && node ./build/app.js",
+    "lint": "tslint --project tsconfig.json",
+    "lint:fix": "tslint --project tsconfig.json --fix"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +30,7 @@
     "react-router-dom": "^5.0.1",
     "ts-node": "^8.2.0",
     "ts-node-dev": "^1.0.0-pre.39",
+    "tslint": "^5.17.0",
     "typescript": "^3.5.1"
   }
 }

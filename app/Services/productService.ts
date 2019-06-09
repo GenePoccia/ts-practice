@@ -14,8 +14,7 @@ export class ProductService {
   constructor(productsRepo: MongoRepo) {
     this.repo = productsRepo;
   }
-  async getProducts(): Promise<any> {
-    console.log("inside service");
-    return this.repo.getMany();
+  public async getProducts(): Promise<any> {
+    return await this.repo.getMany();
   }
 }
