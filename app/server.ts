@@ -33,7 +33,7 @@ app.get("/planter", (req, res) => {
     let db = dbs.db("items");
     db.collection("planters")
       .find({})
-      .toArray((err, results) => {
+      .toArray((err: Error, results: Array<Object>) => {
         console.log(err);
         res.send(JSON.stringify({ success: true, results }));
       });

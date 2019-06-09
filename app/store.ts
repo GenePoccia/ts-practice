@@ -1,16 +1,15 @@
 import {createStore} from 'redux'
 import { string } from 'prop-types';
 
-interface state {
-    
-}
+
+
 
 interface action {
     type: string
     planters: string
 }
 
-const reducer = (state: state, action: action) => {
+const reducer = (state: object, action: action) => {
     if (action.type === 'load-planters') {
         return {...state,
         planters: action.planters}
@@ -21,7 +20,9 @@ const reducer = (state: state, action: action) => {
 
 const store = createStore(
     reducer,
-    {},
+    {
+        planters: Array
+    },
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
