@@ -1,48 +1,48 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Route, Link} from 'react-router-dom'
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {Link, Route} from "react-router-dom";
 
 interface State {
-    planters: Array<object>;
+    planters: object[];
 }
 
-class UnconnectedApp extends Component {
-    constructor(props : object) {
-        super(props)
+class UnconnectedApp extends Component<any> {
+    constructor(props: object) {
+        super(props);
     }
-    componentDidMount = () => {
+    public componentDidMount = () => {
         fetch("http://localhost:4000/planter")
-          .then(x => {
+          .then((x) => {
             return x.text();
           })
-          .then(responseBody => {
-            let body = JSON.parse(responseBody);
+          .then((responseBody) => {
+            const body = JSON.parse(responseBody);
             this.props.dispatch({
               type: "load-planters",
-              planters: body.results
+              planters: body.results,
             });
           });
     }
 
-    renderRoot = () => {
-        return <div>hello world</div>
+    public renderRoot = () => {
+        return <div>hello world</div>;
     }
 
-    renderPlanters = () => {
-        return <div> planters go here </div>
+    public renderPlanters = () => {
+        return <div> planters go here </div>;
     }
 
-    render = () => {
+    public render = () => {
         return <div>
-            <Route exact={true} path = '/' render = {this.renderRoot} />
-            <Route exact={true} path = '/planters' render = {this.renderPlanters} />
-            </div>
+            <Route exact={true} path = "/" render = {this.renderRoot} />
+            <Route exact={true} path = "/planters" render = {this.renderPlanters} />
+            </div>;
     }
 }
 
-let mapStateToProps = (state: State) => {
-    return {planters: state.planters}
-}
+const mapStateToProps = (state: State) => {
+    return {planters: state.planters};
+};
 
-let App = connect(mapStateToProps)(UnconnectedApp)
-export default App
+const App = connect(mapStateToProps)(UnconnectedApp);
+export default App;

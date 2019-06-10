@@ -1,9 +1,9 @@
-import { createStore, Reducer } from "redux";
 import { string } from "prop-types";
+import { createStore, Reducer } from "redux";
 
 const initialState: Object = {
   planters: [],
-  cart: []
+  cart: [],
 };
 
 interface action {
@@ -13,7 +13,7 @@ interface action {
 
 const reducer: Reducer<unknown, action> = (
   state: any,
-  action: action
+  action: action,
 ): object => {
   switch (action.type) {
     case "load-planters": {
@@ -27,7 +27,7 @@ const reducer: Reducer<unknown, action> = (
 const store = createStore(
   reducer,
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 export default store;

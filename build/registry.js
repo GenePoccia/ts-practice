@@ -34,64 +34,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-var express = require("express");
-var multer = require("multer");
-var cors = require("cors");
-var bodyParser = require("body-parser");
-var Mongo = require("mongoDB");
+Object.defineProperty(exports, "__esModule", { value: true });
+var mongodb_1 = require("mongodb");
 var productController_1 = require("../app/Controllers/productController");
 var productService_1 = require("./Services/productService");
 var mongoRepo_1 = require("./Repositories/mongoRepo");
-var Server = /** @class */ (function () {
-    function Server(controller) {
-        this.controller = controller;
-        this.app = express();
+var Server_1 = require("./Server");
+var Registry = /** @class */ (function () {
+    function Registry() {
     }
-    Server.prototype.init = function () {
-        var _this = this;
-        //express
-        var app = this.app;
-        //multer
-        var UPLOAD_PATH = "uploads";
-        var upload = multer({ dest: UPLOAD_PATH + "/" });
-        //cors
-        app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
-        //bodyParser
-        app.use(bodyParser());
-        app.get("/", function (req, res) {
-            res.send("Hello World");
+    Registry.prototype.getApp = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var url, connection, repo, service, controller, server;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = "mongodb+srv://gene:panama13@cluster0-9verg.mongodb.net/test?retryWrites=true&w=majority";
+                        return [4 /*yield*/, mongodb_1.MongoClient.connect(url)];
+                    case 1:
+                        connection = _a.sent();
+                        repo = new mongoRepo_1.MongoRepo(connection);
+                        service = new productService_1.ProductService(repo);
+                        controller = new productController_1.ProductController(service);
+                        server = new Server_1.Server(controller);
+                        return [4 /*yield*/, server.init()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/, server.app];
+                }
+            });
         });
-        app.get("/planter", function (req, res) {
-            return _this.controller.getMany();
-        });
-        this.app = app;
     };
-    return Server;
+    return Registry;
 }());
-exports.Server = Server;
-(function () {
-    return __awaiter(this, void 0, void 0, function () {
-        var url, connection, repo, service, controller, server;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    url = "mongodb+srv://gene:panama13@cluster0-9verg.mongodb.net/test?retryWrites=true&w=majority";
-                    return [4 /*yield*/, Mongo.MongoClient.connect(url)];
-                case 1:
-                    connection = _a.sent();
-                    repo = new mongoRepo_1.MongoRepo(connection);
-                    service = new productService_1.ProductService(repo);
-                    controller = new productController_1.ProductController(service);
-                    server = new Server(controller);
-                    return [4 /*yield*/, server.init()];
-                case 2:
-                    _a.sent();
-                    server.app.listen(4000, function () {
-                        console.log("Listening on port 4000");
-                    });
-                    return [2 /*return*/];
-            }
-        });
-    });
-})();
+exports.Registry = Registry;

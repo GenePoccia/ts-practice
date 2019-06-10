@@ -10,13 +10,20 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var redux_1 = require("redux");
-var reducer = function (state, action) {
-    if (action.type === 'load-planters') {
-        return __assign({}, state, { planters: action.planters });
-    }
-    return state;
+var initialState = {
+    planters: [],
+    cart: []
 };
-var store = redux_1.createStore(reducer, {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-exports["default"] = store;
+var reducer = function (state, action) {
+    switch (action.type) {
+        case "load-planters": {
+            return __assign({}, state, { planters: action.planters });
+        }
+        default:
+            return state;
+    }
+};
+var store = redux_1.createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+exports.default = store;

@@ -1,4 +1,4 @@
-import { MongoClient, Db } from "mongoDB";
+import { Db, MongoClient } from "mongoDB";
 
 interface Repository {
   getOne: Function;
@@ -11,21 +11,16 @@ export class MongoRepo implements Repository {
   constructor(mongo: MongoClient) {
     this.connection = mongo.db("dbName");
   }
-  getOne() {
+  public getOne() {
     console.log("");
   }
-  async getMany(): Promise<any> {
-    console.log("above return");
-    return this.connection
+  public async getMany(): Promise<any> {
+    return await this.connection
       .collection("planters")
       .find({})
-      .toArray((err: Error, results: Array<Object>) => {
-        console.log("you are here");
-        console.log(err);
-        return JSON.stringify({ success: true, results });
-      });
+      .toArray();
   }
-  putOne() {
+  public putOne() {
     console.log("");
   }
 }
