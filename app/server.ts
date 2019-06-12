@@ -3,12 +3,16 @@ import cors from "cors";
 import express, { Application } from "express";
 import multer from "multer";
 import { ProductController } from "./Controllers/productController";
+import { UserController } from './Controllers/userController'
 
 export class Server {
   public app: Application;
   private controller: ProductController;
-  constructor(controller: ProductController) {
+  private userController: UserController
+
+  constructor(controller: ProductController, userController: any) {
     this.controller = controller;
+    this.userController = userController
     this.app = express();
   }
   public init() {
@@ -22,13 +26,20 @@ export class Server {
     // bodyParser
     app.use(bodyParser());
 
+    //mainpage
     app.get("/", (req, res) => {
       res.send("Hello World");
     });
 
+    //planters
     app.get("/planter", async (req, res) => {
       await this.controller.getMany(req, res);
     });
+    
+    //users
+    app.get('/user', async (req,res) => {
+      await this.userController.getUser(req, res)
+    })
 
     this.app = app;
   }

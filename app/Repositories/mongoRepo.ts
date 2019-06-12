@@ -4,6 +4,7 @@ interface Repository {
   getOne: Function;
   getMany: Function;
   putOne: Function;
+  getUsers: Function
 }
 
 export class MongoRepo implements Repository {
@@ -11,8 +12,11 @@ export class MongoRepo implements Repository {
   constructor(mongo: MongoClient) {
     this.connection = mongo.db("dbName");
   }
-  public getOne() {
-    console.log("");
+  public async getOne(): Promise<any> {
+    return await this.connection
+    .collection("planters")
+    .findOne({})
+    
   }
   public async getMany(): Promise<any> {
     return await this.connection
@@ -20,7 +24,11 @@ export class MongoRepo implements Repository {
       .find({})
       .toArray();
   }
-  public putOne() {
+  public async putOne() {
     console.log("");
+  }
+
+  public async getUsers() {
+    console.log('get user here')
   }
 }
