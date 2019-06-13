@@ -13,19 +13,21 @@ export class MongoRepo implements Repository {
     this.connection = mongo.db("dbName");
   }
   public async getOne(): Promise<any> {
+    console.log('get one here')
     return await this.connection
     .collection("planters")
     .findOne({})
     
   }
   public async getMany(): Promise<any> {
+    console.log('get many here')
     return await this.connection
       .collection("planters")
       .find({})
       .toArray();
   }
   public async putOne() {
-    console.log("");
+    console.log("put one here");
   }
 
   public async getUsers() {
