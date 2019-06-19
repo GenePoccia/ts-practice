@@ -1,12 +1,12 @@
-import { MongoRepo } from '../Repositories/mongoRepo'
+import { UserRepo } from "../Repositories/userRepo";
 
 export class UserService {
-    private repo: MongoRepo
-    constructor(usersRepo: MongoRepo) {
-        this.repo = usersRepo
-    }
+  private repo: UserRepo;
+  constructor(usersRepo: UserRepo) {
+    this.repo = usersRepo;
+  }
 
-    public async getUsers(): Promise<any> {
-        return await this.repo.getUsers();
-    }
+  public async getUsers(): Promise<any> {
+    return await this.repo.getUser();
+  }
 }

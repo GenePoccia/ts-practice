@@ -4,33 +4,27 @@ interface Repository {
   getOne: Function;
   getMany: Function;
   putOne: Function;
-  getUsers: Function
 }
 
 export class MongoRepo implements Repository {
   private connection: Db;
-  constructor(mongo: MongoClient) {
-    this.connection = mongo.db("dbName");
+  private collection: string;
+  constructor(mongo: MongoClient, collection: string) {
+    this.connection = mongo.db("items");
+    this.collection = collection;
   }
   public async getOne(): Promise<any> {
-    console.log('get one here')
-    return await this.connection
-    .collection("planters")
-    .findOne({})
-    
+    console.log("get one here");
+    return await this.connection.collection(this.collection).findOne({});
   }
-  public async getMany(): Promise<any> {
-    console.log('get many here')
-    return await this.connection
-      .collection("planters")
+  public async getMany<T>(): Promise<T> {
+    console.log("get many here");
+    return <T>(<unknown>await this.connection
+      .collection(this.collection)
       .find({})
-      .toArray();
+      .toArray());
   }
   public async putOne() {
     console.log("put one here");
-  }
-
-  public async getUsers() {
-    console.log('get user here')
   }
 }

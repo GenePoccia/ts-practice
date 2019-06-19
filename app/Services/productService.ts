@@ -1,20 +1,16 @@
-import { MongoRepo } from "../Repositories/mongoRepo";
+import { ProductRepo } from "../Repositories/productRepo";
+import { RemotePlanter } from "../../types/planter";
 
-interface Planter {
-  name: string;
-  price: number;
-  description: string;
-}
 interface Service {
   getProducts: Function;
 }
 
 export class ProductService {
-  private repo: MongoRepo;
-  constructor(productsRepo: MongoRepo) {
+  private repo: ProductRepo;
+  constructor(productsRepo: ProductRepo) {
     this.repo = productsRepo;
   }
-  public async getProducts(): Promise<any> {
-    return await this.repo.getMany();
+  public async getProducts(): Promise<RemotePlanter[]> {
+    return await this.repo.getMany<RemotePlanter[]>();
   }
 }
