@@ -10,7 +10,7 @@ export class Server {
   private controller: ProductController;
   private userController: UserController
 
-  constructor(controller: ProductController, userController: any) {
+  constructor(controller: ProductController, userController: UserController) {
     this.controller = controller;
     this.userController = userController
     this.app = express();
