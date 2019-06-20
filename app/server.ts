@@ -7,11 +7,11 @@ import { UserController } from './Controllers/userController'
 
 export class Server {
   public app: Application;
-  private controller: ProductController;
+  private productController: ProductController;
   private userController: UserController
 
-  constructor(controller: ProductController, userController: UserController) {
-    this.controller = controller;
+  constructor(productController: ProductController, userController: UserController) {
+    this.productController = productController;
     this.userController = userController
     this.app = express();
   }
@@ -33,7 +33,7 @@ export class Server {
 
     //planters
     app.get("/planter", async (req, res) => {
-      await this.controller.getMany(req, res);
+      await this.productController.getMany(req, res);
     });
     
     //users

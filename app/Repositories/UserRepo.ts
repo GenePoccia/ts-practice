@@ -7,6 +7,7 @@ export class UserRepo extends MongoRepo {
   }
 
   public async getUser(): Promise<any> {
-    return await {};
+    console.log('inside user repo')
+    return await this.getMany();
   }
 }
