@@ -4,7 +4,7 @@ import { RemotePlanter } from "../../types/planter";
 
 export class ProductRepo extends MongoRepo {
   constructor(MongoClient: MongoClient) {
-    super(MongoClient, "planters");
+    super(MongoClient, "planters", "items");
   }
 
   public async getProducts(): Promise<RemotePlanter[]> {

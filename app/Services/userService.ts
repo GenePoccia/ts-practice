@@ -1,4 +1,5 @@
 import { UserRepo } from "../Repositories/userRepo";
+import { RemoteUser } from "../../types/user"
 
 export class UserService {
   private repo: UserRepo;
@@ -6,7 +7,7 @@ export class UserService {
     this.repo = usersRepo;
   }
 
-  public async getUsers(): Promise<any> {
+  public async getUsers(): Promise<RemoteUser[]> {
     return await this.repo.getUser();
   }
 }

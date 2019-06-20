@@ -9,9 +9,11 @@ interface Repository {
 export class MongoRepo implements Repository {
   private connection: Db;
   private collection: string;
-  constructor(mongo: MongoClient, collection: string) {
-    this.connection = mongo.db("items");
+  private database: string
+  constructor(mongo: MongoClient, collection: string, database: string) {
+    this.connection = mongo.db(database);
     this.collection = collection;
+    this.database = database
   }
   public async getOne(): Promise<any> {
     console.log("get one here");
@@ -28,6 +30,5 @@ export class MongoRepo implements Repository {
     console.log("put one here");
   }
 }
-
 
 
