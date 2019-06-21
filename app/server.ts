@@ -4,15 +4,18 @@ import express, { Application } from "express";
 import multer from "multer";
 import { ProductController } from "./Controllers/productController";
 import { UserController } from './Controllers/userController'
+import { CartController } from './Controllers/cartController'
 
 export class Server {
   public app: Application;
   private productController: ProductController;
-  private userController: UserController
+  private userController: UserController;
+  private cartController: CartController;
 
-  constructor(productController: ProductController, userController: UserController) {
+  constructor(productController: ProductController, userController: UserController, cartController: CartController) {
     this.productController = productController;
-    this.userController = userController
+    this.userController = userController;
+    this.cartController = cartController;
     this.app = express();
   }
   public init() {
@@ -39,6 +42,10 @@ export class Server {
     //users
     app.get('/user', async (req,res) => {
       await this.userController.getUser(req, res)
+    })
+
+    app.get('/cart', async (req,res) => {
+      await this.cartController.getCart(req, res)
     })
 
     this.app = app;
