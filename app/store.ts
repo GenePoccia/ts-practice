@@ -4,6 +4,7 @@ import { createStore, Reducer } from "redux";
 const initialState: Object = {
   planters: [],
   cart: [],
+  
 };
 
 interface action {
