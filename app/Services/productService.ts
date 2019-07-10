@@ -13,4 +13,5 @@ export class ProductService {
   public async getProducts(): Promise<RemotePlanter[]> {
     return await this.repo.getMany<RemotePlanter[]>();
   }
+
 }

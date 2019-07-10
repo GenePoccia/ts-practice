@@ -35,7 +35,7 @@ export class Server {
     });
 
     //planters
-    app.get("/planter", async (req, res) => {
+    app.get("/planters", async (req, res) => {
       await this.productController.getMany(req, res);
     });
     

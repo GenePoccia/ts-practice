@@ -10,4 +10,5 @@ export class ProductRepo extends MongoRepo {
   public async getProducts(): Promise<RemotePlanter[]> {
     return await this.getMany();
   }
+
 }

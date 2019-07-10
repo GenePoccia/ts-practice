@@ -4,7 +4,9 @@ import { Router, Link } from 'react-router-dom'
 
 class UnconnectedHeader extends Component {
     render = () => {
-        return <div> image here -> site name -> login/signup?</div>
+        return <div>
+            <div>Header here</div>
+             image here -> site name -> login/signup?</div>
     }
 }
 

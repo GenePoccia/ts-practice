@@ -26,8 +26,12 @@ export class MongoRepo implements Repository {
       .find({})
       .toArray());
   }
-  public async putOne() {
-    
+  public async putOne<T>(): Promise<T> {
+
+    return <T>(<unknown>await this.connection
+      .collection(this.collection)
+      .insert({})
+    )
   }
 }
 

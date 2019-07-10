@@ -10,7 +10,9 @@ class UnconnectedBody extends Component {
 
 
 let mapStateToProps = state => {
-    return {}
+    return {
+        planters: state.planters
+    }
 }
 
 let Body = connect(mapStateToProps)(UnconnectedBody)
