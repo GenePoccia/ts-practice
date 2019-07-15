@@ -4,7 +4,8 @@ import { Route, Link } from 'react-router-dom'
 
 class UnconnectedBody extends Component {
     render = () => {
-        return <div>Body goes here</div>
+        return <div>Body goes here
+        </div>
     }
 }
 

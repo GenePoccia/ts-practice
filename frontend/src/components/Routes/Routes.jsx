@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Link } from 'react-router-dom'
-import Homepage from '../Homepage/Homepage'
+import { Route } from 'react-router-dom'
+import Homepage from '../Homepage/Homepage.jsx'
+import Body from '../Homepage/Body.jsx'
 
 class UnconnectedRoutes extends Component {
     renderHomepage = () => {
-        return <HomePage />
+        return <Homepage />
+    }
+
+    renderPlanters = () => {
+        return <div>Hello World</div>
     }
     
     render = () => {
@@ -17,3 +22,11 @@ class UnconnectedRoutes extends Component {
         )
     }
 }
+
+let mapStateToProps = state => {
+    return {}
+}
+
+let Routes = connect(mapStateToProps)(UnconnectedRoutes)
+
+export default Routes
