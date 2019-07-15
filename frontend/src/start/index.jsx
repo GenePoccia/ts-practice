@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "../components/App.jsx";
 import store from "../store/store.js";
+import '../css/homepage.css'
 
 ReactDom.render(<Provider store={store}>
     <BrowserRouter>
