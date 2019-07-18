@@ -7,7 +7,7 @@ let logo = 'https://i.imgur.com/UJiLoFU.jpg'
 
 class UnconnectedHeader extends Component {
     render = () => {
-        return <div> <img src={logo} /> <span>Welcome to Creation Beton Neotek</span></div>
+        return <div> <img src={logo} /> <span>Welcome to Creation Beton Neotek</span> <span>Cart(link)</span></div>
     }
 }
 
