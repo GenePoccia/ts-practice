@@ -1,11 +1,13 @@
+//React imports
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
+//Component imports
 import Homepage from '../Homepage/Homepage.jsx'
-import Body from '../Homepage/Body.jsx'
+
 
 class UnconnectedRoutes extends Component {
-    renderHomepage = () => {
+    renderRoot = () => {
         return <Homepage />
     }
 
@@ -16,7 +18,7 @@ class UnconnectedRoutes extends Component {
     render = () => {
         return (
             <div>
-                <Route exact={true} path='/' render={this.renderHomePage} />
+                <Route exact={true} path='/' render={this.renderRoot} />
                 <Route exact={true} path='/planters' render={this.renderPlanters} />
             </div>
         )

@@ -1,6 +1,8 @@
+//React imports
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Link } from 'react-router-dom'
+//Component imports
 import Header from './Header.jsx'
 import Body from './Body.jsx'
 import Footer from './Footer.jsx'
