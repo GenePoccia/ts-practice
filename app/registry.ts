@@ -11,9 +11,9 @@ import { ProductRepo } from "./Repositories/ProductRepo";
 import { CartController } from "./Controllers/cartController";
 import { CartRepo } from "./Repositories/cartRepo";
 import { CartService } from "./Services/cartService"
-import { LoginController } from "./Controllers/loginController"
-import { LoginRepo } from './Repositories/loginRepo'
-import { LoginService } from './Services/loginService'
+import { SignupController } from "./Controllers/signupController"
+import { SignupRepo } from './Repositories/signupRepo'
+import { SignupService } from './Services/signupService'
 
 export class Registry {
   public async getApp(): Promise<Application> {
@@ -27,19 +27,19 @@ export class Registry {
     const userRepo = new UserRepo(connection);
     const productRepo = new ProductRepo(connection);
     const cartRepo = new CartRepo(connection);
-    const loginRepo = new LoginRepo(connection)
+    const signupRepo = new SignupRepo(connection)
     //services
     const productService = new ProductService(productRepo);
     const userService = new UserService(userRepo);
     const cartService = new CartService(cartRepo);
-    const loginService = new LoginService(loginRepo)
+    const signupService = new SignupService(signupRepo)
     //controllers
     const controller = new ProductController(productService);
     const userController = new UserController(userService);
     const cartController = new CartController(cartService)
-    const loginController = new LoginController(loginService)
+    const signupController = new SignupController(signupService)
     //servers
-    const server = new Server(controller, userController, cartController, loginController);
+    const server = new Server(controller, userController, cartController, signupController);
 
     await server.init();
     return server.app;

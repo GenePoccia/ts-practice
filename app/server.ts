@@ -5,20 +5,20 @@ import multer from "multer";
 import { ProductController } from "./Controllers/productController";
 import { UserController } from './Controllers/userController'
 import { CartController } from './Controllers/cartController'
-import { LoginController } from './Controllers/loginController'
+import { SignupController } from './Controllers/signupController'
 
 export class Server {
   public app: Application;
   private productController: ProductController;
   private userController: UserController;
   private cartController: CartController;
-  private loginController: LoginController;
+  private signupController: SignupController;
 
-  constructor(productController: ProductController, userController: UserController, cartController: CartController, loginController: LoginController) {
+  constructor(productController: ProductController, userController: UserController, cartController: CartController, signupController: SignupController) {
     this.productController = productController;
     this.userController = userController;
     this.cartController = cartController;
-    this.loginController = loginController;
+    this.signupController = signupController;
     this.app = express();
   }
   public init() {
@@ -51,7 +51,7 @@ export class Server {
       await this.cartController.getCart(req, res)
     })
      app.post('/login', upload.none(), async (req, res) => {
-       await this.loginController.login(req, res)
+       await this.signupController.signup(req, res)
      })
 
     this.app = app;
